@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giftv3 Web Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <a href="/giftcard-maker-assets/index.html" class="header-logo-link" aria-label="Go to giftcard editor">
+      <img src="/giftcard-maker-assets/images/logo.png" alt="Logo" class="header-logo" />
+    </a>
+    <nav class="mode-switch" aria-label="Mode switch">
+      <button type="button" class="mode-btn" onclick="window.location.href='/giftcard-maker-assets/index.html'" data-i18n="modeGiftcard">Giftcard mode</button>
+    </nav>
+    <div class="operator-switch" id="operatorSwitch" hidden>
+      <select id="operatorSelect" aria-label="Operator">
+        <option value="" data-i18n="operatorSelectPlaceholder">Select operator</option>
+      </select>
+    </div>
+    <button type="button" id="languageToggleBtn" class="language-toggle-btn" aria-label="Switch language">Svenska</button>
+    <button type="button" id="logoutBtn" class="logout-btn" data-i18n="logout">Logout</button>
+  </header>
+
+  <div class="operator-empty-state" id="operatorEmptyState" hidden>
+    <p data-i18n="noOperatorAccess">You are not connected to any Operators.</p>
+  </div>
+
+  <main class="layout">
+    <aside class="menu-panel">
+      <p class="menu-panel-kicker" data-i18n="workspace">Workspace</p>
+      <h2 class="menu-panel-title" data-i18n="targetPreview">Target + Preview</h2>
+
+      <p class="menu-panel-kicker" data-i18n="editorTargetLabel">Content source</p>
+      <div class="panel-actions" id="editorTargetButtons">
+        <button type="button" class="panel-btn" data-editor-target="web" data-i18n="editorTargetWeb">Web editor</button>
+        <button type="button" class="panel-btn" data-editor-target="banner" data-i18n="editorTargetBanner">Banner HTML</button>
+        <button type="button" class="panel-btn" data-editor-target="footer" data-i18n="editorTargetFooter">Footer HTML</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="menu-panel-kicker" data-i18n="editorActions">Editor actions</p>
+      <div class="panel-actions">
+        <label class="panel-btn file-btn">
+          <span data-i18n="loadHtml">Load HTML</span>
+          <input type="file" id="loadHtmlInput" accept=".html,text/html" />
+        </label>
+        <label class="panel-btn file-btn">
+          <span data-i18n="loadCss">Load CSS</span>
+          <input type="file" id="loadCssInput" accept=".css,text/css" />
+        </label>
+        <label class="panel-btn file-btn">
+          <span data-i18n="loadJs">Load JS</span>
+          <input type="file" id="loadJsInput" accept=".js,text/javascript,application/javascript" />
+        </label>
+        <button type="button" id="applyBtn" class="panel-btn primary" data-i18n="applyChanges">Apply changes</button>
+        <button type="button" id="saveProjectBtn" class="panel-btn" data-i18n="saveProject">Save project</button>
+        <button type="button" id="restoreBackupBtn" class="panel-btn" data-i18n="restoreBackup">Undo last save</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <label class="inline-toggle">
+        <input type="checkbox" id="livePreviewToggle" checked />
+        <span data-i18n="livePreview">Live preview</span>
+      </label>
+      <label class="inline-toggle">
+        <input type="checkbox" id="wrapToggle" checked />
+        <span data-i18n="wrapLines">Wrap editor lines</span>
+      </label>
+      <label>
+        <span data-i18n="previewSize">Preview size</span>
+        <select id="previewSizeSelect">
+          <option value="fit" selected data-i18n="previewFit">Fit container</option>
+          <option value="1200" data-i18n="previewDesktop">Desktop 1200</option>
+          <option value="1024" data-i18n="previewLaptop">Laptop 1024</option>
+          <option value="768" data-i18n="previewTablet">Tablet 768</option>
+          <option value="375" data-i18n="previewMobile">Mobile 375</option>
+        </select>
+      </label>
+
+      <div class="divider"></div>
+
+      <p class="menu-panel-kicker" data-i18n="status">Status</p>
+      <div id="statusPill" class="status-pill">Ready</div>
+      <p class="last-update"><span data-i18n="lastUpdated">Last updated</span>: <span id="lastUpdate">Never</span></p>
+
+      <div class="divider"></div>
+
+      <button type="button" id="resetBtn" class="panel-btn" data-i18n="resetEditors">Reset editors</button>
+    </aside>
+
+    <section class="preview-wrapper">
+      <div class="preview-card">
+        <div class="preview-header">
+          <div>
+            <p class="preview-kicker" data-i18n="previewKicker">Preview</p>
+            <h3 class="preview-title" data-i18n="liveCanvas">Live canvas</h3>
+          </div>
+          <div class="preview-meta">
+            <span class="meta-label" data-i18n="sandbox">Sandbox</span>
+            <span class="meta-value">srcdoc</span>
+          </div>
+        </div>
+        <div class="preview-stage" id="previewStage">
+          <iframe id="previewFrame" title="Live preview" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div
+            class="preview-resize-handle"
+            id="previewResizeHandle"
+            role="separator"
+            aria-orientation="horizontal"
+            aria-label="Resize preview height"
+            tabindex="0"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="detail-panel wrap-code" id="editorPanel">
+      <div class="detail-panel-head">
+        <p class="detail-panel-kicker" data-i18n="editors">Editors</p>
+        <h3 id="detailPanelTitle" data-i18n="htmlCssJs">HTML + CSS + JS</h3>
+        <p id="detailPanelDescription" data-i18n="editorsDescription">Update code and push changes to the preview.</p>
+      </div>
+
+      <section class="editor-section" id="htmlEditorSection">
+        <div class="editor-header">
+          <h4>HTML</h4>
+          <div class="editor-header-actions">
+            <button type="button" class="editor-highlight-btn" data-editor-focus>Highlight</button>
+            <span class="editor-tag" data-i18n="markup">Markup</span>
+          </div>
+        </div>
+        <textarea id="htmlInput" class="editor-input" spellcheck="false"></textarea>
+      </section>
+
+      <section class="editor-section" id="cssEditorSection">
+        <div class="editor-header">
+          <h4>CSS</h4>
+          <div class="editor-header-actions">
+            <button type="button" class="editor-highlight-btn" data-editor-focus>Highlight</button>
+            <span class="editor-tag" data-i18n="styles">Styles</span>
+          </div>
+        </div>
+        <textarea id="cssInput" class="editor-input" spellcheck="false"></textarea>
+      </section>
+
+      <section class="editor-section" id="jsEditorSection">
+        <div class="editor-header">
+          <h4>JavaScript</h4>
+          <div class="editor-header-actions">
+            <button type="button" class="editor-highlight-btn" data-editor-focus>Highlight</button>
+            <span class="editor-tag" data-i18n="behavior">Behavior</span>
+          </div>
+        </div>
+        <textarea id="jsInput" class="editor-input" spellcheck="false"></textarea>
+      </section>
+    </aside>
+  </main>
+
+  <div class="editor-focus-overlay" id="editorFocusOverlay" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>

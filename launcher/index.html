@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giftcard Launcher</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b1220;
+        --panel: #111827;
+        --panel-2: #0f172a;
+        --border: #334155;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --ok: #22c55e;
+        --warn: #f59e0b;
+        --bad: #ef4444;
+        --button: #2563eb;
+        --button-hover: #1d4ed8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, #020617 0%, var(--bg) 100%);
+        color: var(--text);
+      }
+
+      main {
+        width: min(960px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 48px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 32px;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .toolbar {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .button {
+        border: 1px solid transparent;
+        background: var(--button);
+        color: white;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background: var(--button-hover);
+      }
+
+      .button.secondary {
+        background: transparent;
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .button.warning {
+        background: #b45309;
+      }
+
+      .button.warning:hover {
+        background: #92400e;
+      }
+
+      .button.danger {
+        background: #b91c1c;
+      }
+
+      .button.danger:hover {
+        background: #991b1b;
+      }
+
+      .button:disabled {
+        opacity: 0.6;
+        cursor: wait;
+      }
+
+      .meta {
+        margin-top: 18px;
+        padding: 14px 16px;
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        line-height: 1.5;
+      }
+
+      .grid {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        background: linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.96));
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px;
+      }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--warn);
+      }
+
+      .dot.ok {
+        background: var(--ok);
+      }
+
+      .dot.bad {
+        background: var(--bad);
+      }
+
+      .detail {
+        min-height: 48px;
+        margin-bottom: 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .footer {
+        margin-top: 20px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      code {
+        color: #cbd5e1;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Giftcard Launcher</h1>
+      <p>En enkel kontrollpanel som kollar om allt är igång och kan starta det som saknas.</p>
+
+      <div class="toolbar">
+        <button id="refreshBtn" class="button secondary" type="button">Uppdatera status</button>
+        <button id="startAllBtn" class="button" type="button">Starta allt</button>
+        <a class="button secondary" href="http://localhost:8080" target="_blank" rel="noreferrer">Öppna backoffice</a>
+      </div>
+
+      <div id="meta" class="meta">Laddar status…</div>
+      <div id="grid" class="grid"></div>
+      <div id="footer" class="footer"></div>
+    </main>
+
+    <script>
+      const grid = document.getElementById("grid");
+      const meta = document.getElementById("meta");
+      const footer = document.getElementById("footer");
+      const refreshBtn = document.getElementById("refreshBtn");
+      const startAllBtn = document.getElementById("startAllBtn");
+
+      refreshBtn.addEventListener("click", () => loadStatus());
+      startAllBtn.addEventListener("click", () => startService("all"));
+
+      async function loadStatus() {
+        setBusy(refreshBtn, true);
+        try {
+          const response = await fetch("/api/status");
+          const data = await response.json();
+          render(data);
+        } catch (error) {
+          meta.textContent = "Kunde inte ladda launcher-status.";
+          footer.textContent = String(error);
+        } finally {
+          setBusy(refreshBtn, false);
+        }
+      }
+
+      function render(data) {
+        meta.innerHTML =
+          "<div><strong>Launcher:</strong> <code>http://localhost:" +
+          data.launcherPort +
+          "</code></div>" +
+          "<div><strong>Repo:</strong> <code>" +
+          escapeHtml(data.rootDir) +
+          "</code></div>" +
+          "<div><strong>Backoffice-kod:</strong> <code>" +
+          escapeHtml(data.appDir || data.rootDir) +
+          "</code></div>" +
+          "<div><strong>Källa:</strong> <code>" +
+          escapeHtml(data.appSource || "arbetskatalogen") +
+          "</code></div>" +
+          "<div><strong>Revision:</strong> <code>" +
+          escapeHtml(data.appRevision || "okänd") +
+          "</code></div>" +
+          "<div><strong>Giftv3:</strong> <code>" +
+          escapeHtml(data.giftcardMakerPath || "ingen sökväg") +
+          "</code></div>" +
+          (data.appContextError
+            ? "<div><strong>Varning:</strong> <code>" + escapeHtml(data.appContextError) + "</code></div>"
+            : "");
+
+        grid.innerHTML = "";
+        Object.entries(data.services).forEach(([key, service]) => {
+          const card = document.createElement("section");
+          card.className = "card";
+
+          const statusClass = service.healthy ? "ok" : "bad";
+          const statusText = service.healthy ? "Igång" : "Nere";
+
+          card.innerHTML =
+            "<h2>" + escapeHtml(service.label) + "</h2>" +
+            '<div class="status"><span class="dot ' + statusClass + '"></span><span>' + statusText + "</span></div>" +
+            '<div class="detail">' + escapeHtml(service.detail) + "</div>" +
+            '<div class="detail"><code>' + escapeHtml(service.healthUrl) + "</code></div>";
+
+          const actions = document.createElement("div");
+          actions.className = "actions";
+
+          const refresh = document.createElement("button");
+          refresh.className = "button secondary";
+          refresh.type = "button";
+          refresh.textContent = "Kolla igen";
+          refresh.addEventListener("click", () => loadStatus());
+          actions.appendChild(refresh);
+
+          if (service.canStart) {
+            const start = document.createElement("button");
+            start.className = "button";
+            start.type = "button";
+            start.textContent = "Starta";
+            start.addEventListener("click", () => startService(key, start));
+            actions.appendChild(start);
+          }
+
+          if (service.canStop) {
+            const restart = document.createElement("button");
+            restart.className = "button warning";
+            restart.type = "button";
+            restart.textContent = "Starta om";
+            restart.addEventListener("click", () => runServiceAction("restart", key, restart));
+            actions.appendChild(restart);
+
+            const stop = document.createElement("button");
+            stop.className = "button danger";
+            stop.type = "button";
+            stop.textContent = "Stoppa";
+            stop.addEventListener("click", () => runServiceAction("stop", key, stop));
+            actions.appendChild(stop);
+          }
+
+          card.appendChild(actions);
+          grid.appendChild(card);
+        });
+
+        footer.textContent =
+          "Tips: Databasen kan inte startas härifrån. Om den är röd behöver du kontrollera VPN och DB-inställningar.";
+      }
+
+      async function startService(serviceName, button) {
+        if (button) setBusy(button, true);
+        setBusy(startAllBtn, serviceName === "all");
+
+        try {
+          const response = await fetch("/api/start/" + serviceName, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" }
+          });
+          const data = await response.json();
+          if (!response.ok) {
+            alert(data.error || "Start misslyckades.");
+          }
+          await loadStatus();
+        } catch (error) {
+          alert(String(error));
+        } finally {
+          if (button) setBusy(button, false);
+          setBusy(startAllBtn, false);
+        }
+      }
+
+      async function runServiceAction(action, serviceName, button) {
+        if (button) setBusy(button, true);
+        try {
+          const response = await fetch("/api/" + action + "/" + serviceName, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" }
+          });
+          const data = await response.json();
+          if (!response.ok) {
+            alert(data.error || "Åtgärden misslyckades.");
+          }
+          await loadStatus();
+        } catch (error) {
+          alert(String(error));
+        } finally {
+          if (button) setBusy(button, false);
+        }
+      }
+
+      function setBusy(button, busy) {
+        if (!button) return;
+        button.disabled = busy;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+
+      loadStatus();
+      setInterval(loadStatus, 8000);
+    </script>
+  </body>
+</html>

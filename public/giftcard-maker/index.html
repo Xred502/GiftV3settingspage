@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gift Card Preview Editor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav class="top-nav" aria-label="Giftcard actions">
+  <button type="button" id="newGiftcardBtn" class="top-nav-btn" data-i18n="newGiftcard">New giftcard</button>
+  <div class="top-nav-template">
+    <button type="button" id="premadeTemplatesBtn" class="top-nav-btn" data-i18n="premadeTemplates">Premade templates</button>
+    <div id="premadeTemplateControls" class="template-controls" hidden>
+      <select id="premadeTemplateSelect" aria-label="Premade template">
+        <option value="" data-i18n="selectPremadeTemplate">Select premade template</option>
+      </select>
+    </div>
+  </div>
+  <div class="top-nav-template">
+    <button type="button" id="getTemplateBtn" class="top-nav-btn" data-i18n="getTemplate">Get template</button>
+    <div id="templateControls" class="template-controls" hidden>
+      <select id="operatorSelect" aria-label="Template operator" disabled>
+        <option value="" data-i18n="noTemplatesLoaded">No templates loaded</option>
+      </select>
+      <p id="templateStatus" class="template-status" aria-live="polite"></p>
+    </div>
+  </div>
+</nav>
+<div class="layout">
+  <aside class="menu-panel" id="mainMenuPanel" aria-label="Main menu">
+    <p class="menu-panel-kicker" data-i18n="menuMain">Main Menu</p>
+    <h2 class="menu-panel-title" data-i18n="menuProperties">Properties</h2>
+    <button type="button" class="menu-panel-btn active" data-menu-target="menu-background" data-menu-title-key="menuBackground" data-menu-description-key="menuBackgroundDescription" data-i18n="menuBackground">Background</button>
+    <button type="button" class="menu-panel-btn" data-menu-target="menu-content" data-menu-title-key="menuContent" data-menu-description-key="menuContentDescription" data-i18n="menuContent">Content</button>
+    <button type="button" class="menu-panel-btn" data-menu-target="menu-bottom-box" data-menu-title-key="cardInfo" data-menu-description-key="cardInfoDescription" data-i18n="cardInfo">Card info</button>
+    <button type="button" class="menu-panel-btn" data-menu-target="menu-typography" data-menu-title-key="menuTypography" data-menu-description-key="menuTypographyDescription" data-i18n="menuTypography">Typography</button>
+    <button type="button" class="menu-panel-btn" data-menu-target="menu-save-load" data-menu-title-key="menuSaveLoad" data-menu-description-key="menuSaveLoadDescription" data-i18n="menuSaveLoad">Save / Load</button>
+  </aside>
+
+  <div class="preview-wrapper">
+    <div id="giftcard" data-mode="giftcard">
+      <p id="titlePreview" class="draggable" style="top: 100px; left: 100px;">Title</p>
+      <p id="messagePreview" class="draggable" style="top: 200px; left: 100px;">Message</p>
+      <p id="infoPreview" class="draggable" style="top: 260px; left: 100px;">Info</p>
+      <div id="detailsPreviewGroup" class="draggable details-preview-group" style="top: 78%; left: 8%;">
+        <p id="identifierPreview" class="details-preview-line">#IDENTIFIER#</p>
+        <p id="shortpassPreview" class="details-preview-line">#SHORTPASS#</p>
+        <p id="validtoPreview" class="details-preview-line">#VALIDTO#</p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="detail-panel" id="detailPanel" aria-label="Detailed properties">
+    <div class="detail-panel-head">
+      <p class="detail-panel-kicker" data-i18n="menuElement">Element</p>
+      <h3 id="detailPanelTitle">Background</h3>
+      <p id="detailPanelDescription">Background image and base card colors.</p>
+    </div>
+
+    <section class="menu-detail-section active" id="menu-background">
+      <label class="file-upload-btn"><span data-i18n="backgroundImage">Background image</span>
+        <input type="file" id="bgImageInput" accept="image/*" />
+      </label>
+      <label><span data-i18n="backgroundColor">Background color</span>
+        <input type="color" id="bgColorInput" value="#2563eb" />
+      </label>
+      <label><span data-i18n="textColor">Text color</span>
+        <input type="color" id="textColorInput" value="#ffffff" />
+      </label>
+    </section>
+
+    <section class="menu-detail-section" id="menu-content">
+      <label><span data-i18n="title">Title</span>
+        <input type="text" id="titleInput" value="Title" />
+      </label>
+      <label><span data-i18n="message">Message</span>
+        <textarea id="messageInput" rows="3">Message</textarea>
+      </label>
+      <label><span data-i18n="info">Info</span>
+        <textarea id="infoInput" rows="3">Info</textarea>
+      </label>
+      <div class="toggle-group" id="textVisibilityControls">
+        <p class="toggle-group-title" data-i18n="visibleTextFields">Visible text fields</p>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="titlePreview" checked />
+          <span data-i18n="title">Title</span>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="messagePreview" checked />
+          <span data-i18n="message">Message</span>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="infoPreview" checked />
+          <span data-i18n="info">Info</span>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="amountPreview" checked />
+          <span data-i18n="amount">Amount</span>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="identifierPreview" checked />
+          <span data-i18n="identifier">Identifier</span>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="shortpassPreview" checked />
+          <span data-i18n="shortpass">Shortpass</span>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="validtoPreview" checked />
+          <span data-i18n="validTo">Valid to</span>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="bottomBackdropPreview" checked />
+          <span data-i18n="bottomGroupBox">Bottom group box</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="menu-detail-section" id="menu-bottom-box">
+      <label><span data-i18n="bottomGroupTextColor">Bottom group text color</span>
+        <input type="color" id="bottomGroupTextColorInput" value="#ffffff" />
+      </label>
+      <label><span data-i18n="bottomGroupBoxColor">Bottom group box color</span>
+        <input type="color" id="bottomGroupBackdropColorInput" value="#000000" />
+      </label>
+      <label><span data-i18n="bottomGroupBoxOpacity">Bottom group box opacity</span>
+        <input type="range" id="bottomGroupBackdropOpacityInput" min="0" max="100" step="1" value="50" />
+      </label>
+      <label><span data-i18n="bottomGroupBoxShadowColor">Bottom group box shadow color</span>
+        <input type="color" id="bottomGroupBackdropShadowColorInput" value="#000000" />
+      </label>
+      <label><span data-i18n="bottomGroupBoxShadowX">Bottom group box shadow X (px)</span>
+        <input type="number" id="bottomGroupBackdropShadowXInput" min="-200" max="200" step="1" value="0" />
+      </label>
+      <label><span data-i18n="bottomGroupBoxShadowY">Bottom group box shadow Y (px)</span>
+        <input type="number" id="bottomGroupBackdropShadowYInput" min="-200" max="200" step="1" value="10" />
+      </label>
+      <label><span data-i18n="bottomGroupBoxShadowBlur">Bottom group box shadow blur (px)</span>
+        <input type="number" id="bottomGroupBackdropShadowBlurInput" min="0" max="200" step="1" value="18" />
+      </label>
+      <label><span data-i18n="bottomGroupBoxShadowOpacity">Bottom group box shadow opacity</span>
+        <input type="range" id="bottomGroupBackdropShadowOpacityInput" min="0" max="100" step="1" value="0" />
+      </label>
+    </section>
+
+    <section class="menu-detail-section" id="menu-typography">
+      <label><span data-i18n="textField">Text field</span>
+        <select id="textTargetInput">
+          <option value="titlePreview" data-i18n="title">Title</option>
+          <option value="messagePreview" data-i18n="message">Message</option>
+          <option value="infoPreview" data-i18n="info">Info</option>
+          <option value="amountPreview" data-i18n="amount">Amount</option>
+          <option value="detailsPreviewGroup" data-i18n="bottomGroup">Bottom group</option>
+        </select>
+      </label>
+      <label><span data-i18n="fontFamily">Font family</span>
+        <select id="fontFamilyInput">
+          <option value="inherit" data-i18n="default">Default</option>
+          <option value="Arial, sans-serif">Arial</option>
+          <option value="'Times New Roman', serif">Times New Roman</option>
+          <option value="'Courier New', monospace">Courier New</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="Verdana, sans-serif">Verdana</option>
+        </select>
+      </label>
+      <label><span data-i18n="fontSizePx">Font size (px)</span>
+        <input type="number" id="fontSizeInput" min="8" max="300" step="1" value="48" />
+      </label>
+      <label><span data-i18n="fontWeight">Font weight</span>
+        <select id="fontWeightInput">
+          <option value="100">100</option>
+          <option value="200">200</option>
+          <option value="300">300</option>
+          <option value="400" selected>400</option>
+          <option value="500">500</option>
+          <option value="600">600</option>
+          <option value="700">700</option>
+          <option value="800">800</option>
+          <option value="900">900</option>
+        </select>
+      </label>
+      <label><span data-i18n="textShadowColor">Text shadow color</span>
+        <input type="color" id="textShadowColorInput" value="#000000" />
+      </label>
+      <label><span data-i18n="textShadowOffsetX">Text shadow X (px)</span>
+        <input type="number" id="textShadowOffsetXInput" min="-200" max="200" step="1" value="0" />
+      </label>
+      <label><span data-i18n="textShadowOffsetY">Text shadow Y (px)</span>
+        <input type="number" id="textShadowOffsetYInput" min="-200" max="200" step="1" value="0" />
+      </label>
+      <label><span data-i18n="textShadowBlur">Text shadow blur (px)</span>
+        <input type="number" id="textShadowBlurInput" min="0" max="200" step="1" value="0" />
+      </label>
+    </section>
+
+    <section class="menu-detail-section" id="menu-save-load">
+      <button type="button" id="saveLayoutBtn" data-i18n="saveJson">Save JSON</button>
+      <label class="file-upload-btn"><span data-i18n="loadJson">Load JSON</span>
+        <input type="file" id="loadLayoutInput" accept="application/json,.json" />
+      </label>
+    </section>
+
+    <div class="hidden-binding-fields">
+      <label hidden>Amount
+        <input type="text" id="amountInput" value="#AMOUNT#" />
+      </label>
+      <label hidden>Sender
+        <input type="text" id="senderInput" value="Sender Name" />
+      </label>
+      <label hidden>Kortnummer
+        <input type="text" id="identifierInput" value="#IDENTIFIER#" />
+      </label>
+      <label hidden>Shortpass
+        <input type="text" id="shortpassInput" value="#SHORTPASS#" />
+      </label>
+      <label hidden>Giltlighetstdatum
+        <input type="text" id="validToInput" value="#VALIDTO#" />
+      </label>
+    </div>
+  </aside>
+</div>
+
+
+  <script src="Script.js"></script>
+</body>
+</html>

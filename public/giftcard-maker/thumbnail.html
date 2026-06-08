@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gift Card Thumbnail Editor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="thumbnail-mode">
+<header class="app-header">
+  <a href="/giftcard-maker-assets/index.html" class="header-logo-link" aria-label="Go to giftcard editor">
+    <img src="/giftcard-maker-assets/images/logo.png" alt="Logo" class="header-logo" />
+  </a>
+  <nav class="mode-switch" aria-label="Mode switch">
+    <button type="button" class="mode-btn" onclick="window.location.href='/giftcard-maker-assets/index.html'" data-i18n="modeGiftcard">Giftcard mode</button>
+  </nav>
+  <button type="button" id="languageToggleBtn" class="language-toggle-btn" aria-label="Switch language">Svenska</button>
+  <button type="button" id="logoutBtn" class="logout-btn" data-i18n="logout">Logout</button>
+</header>
+<nav class="top-nav" aria-label="Giftcard actions">
+  <button type="button" id="newGiftcardBtn" class="top-nav-btn" data-i18n="newThumbnail">New thumbnail</button>
+  <div class="top-nav-template">
+    <button type="button" id="premadeTemplatesBtn" class="top-nav-btn" data-i18n="premadeTemplates">Premade templates</button>
+    <div id="premadeTemplateControls" class="template-controls" hidden>
+      <select id="premadeTemplateSelect" aria-label="Premade template">
+        <option value="" data-i18n="selectPremadeTemplate">Select premade template</option>
+      </select>
+      <p id="templateStatus" class="template-status" aria-live="polite"></p>
+    </div>
+  </div>
+</nav>
+<div class="layout">
+  <aside class="menu-panel" id="mainMenuPanel" aria-label="Main menu">
+    <p class="menu-panel-kicker" data-i18n="menuMain">Main Menu</p>
+    <h2 class="menu-panel-title" data-i18n="menuProperties">Properties</h2>
+    <button type="button" class="menu-panel-btn active" data-menu-target="menu-background" data-menu-title-key="menuBackground" data-menu-description-key="menuBackgroundDescription" data-i18n="menuBackground">Background</button>
+    <button type="button" class="menu-panel-btn" data-menu-target="menu-content" data-menu-title-key="menuContent" data-menu-description-key="menuContentDescription" data-i18n="menuContent">Content</button>
+    <button type="button" class="menu-panel-btn" data-menu-target="menu-typography" data-menu-title-key="menuTypography" data-menu-description-key="menuTypographyDescription" data-i18n="menuTypography">Typography</button>
+    <button type="button" class="menu-panel-btn" data-menu-target="menu-save-load" data-menu-title-key="menuSaveLoad" data-menu-description-key="menuSaveLoadDescription" data-i18n="menuSaveLoad">Save / Load</button>
+  </aside>
+
+  <div class="preview-wrapper">
+    <div id="giftcard" data-mode="thumbnail">
+      <p id="titlePreview" class="draggable" style="top: 100px; left: 100px;">Title</p>
+      <p id="messagePreview" class="draggable" style="top: 200px; left: 100px;">Message</p>
+      <p id="amountPreview" class="draggable" style="top: 300px; left: 100px;">$0.00</p>
+      <p id="senderPreview" class="draggable" style="top: 400px; left: 100px;">Sender Name</p>
+    </div>
+  </div>
+
+  <aside class="detail-panel" id="detailPanel" aria-label="Detailed properties">
+    <div class="detail-panel-head">
+      <p class="detail-panel-kicker" data-i18n="menuElement">Element</p>
+      <h3 id="detailPanelTitle">Background</h3>
+      <p id="detailPanelDescription">Background image and base card colors.</p>
+    </div>
+
+    <section class="menu-detail-section active" id="menu-background">
+      <label class="file-upload-btn"><span data-i18n="backgroundImage">Background image</span>
+        <input type="file" id="bgImageInput" accept="image/*" />
+      </label>
+      <label><span data-i18n="backgroundColor">Background color</span>
+        <input type="color" id="bgColorInput" value="#2563eb" />
+      </label>
+      <label><span data-i18n="textColor">Text color</span>
+        <input type="color" id="textColorInput" value="#ffffff" />
+      </label>
+    </section>
+
+    <section class="menu-detail-section" id="menu-content">
+      <label><span data-i18n="title">Title</span>
+        <input type="text" id="titleInput" value="Title" />
+      </label>
+      <label><span data-i18n="message">Message</span>
+        <textarea id="messageInput" rows="3">Message</textarea>
+      </label>
+      <label><span data-i18n="amount">Amount</span>
+        <input type="text" id="amountInput" value="$0.00" />
+      </label>
+      <label><span data-i18n="sender">Sender</span>
+        <input type="text" id="senderInput" value="Sender Name" />
+      </label>
+      <div class="toggle-group" id="textVisibilityControls">
+        <p class="toggle-group-title" data-i18n="visibleTextFields">Visible text fields</p>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="titlePreview" />
+          <span data-i18n="title">Title</span>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="messagePreview" />
+          <span data-i18n="message">Message</span>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="amountPreview" />
+          <span data-i18n="amount">Amount</span>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" data-text-visibility-target="senderPreview" />
+          <span data-i18n="sender">Sender</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="menu-detail-section" id="menu-typography">
+      <label><span data-i18n="textField">Text field</span>
+        <select id="textTargetInput">
+          <option value="titlePreview" data-i18n="title">Title</option>
+          <option value="messagePreview" data-i18n="message">Message</option>
+          <option value="amountPreview" data-i18n="amount">Amount</option>
+          <option value="senderPreview" data-i18n="sender">Sender</option>
+        </select>
+      </label>
+      <label><span data-i18n="fontFamily">Font family</span>
+        <select id="fontFamilyInput">
+          <option value="inherit" data-i18n="default">Default</option>
+          <option value="Arial, sans-serif">Arial</option>
+          <option value="'Times New Roman', serif">Times New Roman</option>
+          <option value="'Courier New', monospace">Courier New</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="Verdana, sans-serif">Verdana</option>
+        </select>
+      </label>
+      <label><span data-i18n="fontSizePx">Font size (px)</span>
+        <input type="number" id="fontSizeInput" min="8" max="300" step="1" value="48" />
+      </label>
+      <label><span data-i18n="fontWeight">Font weight</span>
+        <select id="fontWeightInput">
+          <option value="100">100</option>
+          <option value="200">200</option>
+          <option value="300">300</option>
+          <option value="400" selected>400</option>
+          <option value="500">500</option>
+          <option value="600">600</option>
+          <option value="700">700</option>
+          <option value="800">800</option>
+          <option value="900">900</option>
+        </select>
+      </label>
+      <label><span data-i18n="textShadowColor">Text shadow color</span>
+        <input type="color" id="textShadowColorInput" value="#000000" />
+      </label>
+      <label><span data-i18n="textShadowOffsetX">Text shadow X (px)</span>
+        <input type="number" id="textShadowOffsetXInput" min="-200" max="200" step="1" value="0" />
+      </label>
+      <label><span data-i18n="textShadowOffsetY">Text shadow Y (px)</span>
+        <input type="number" id="textShadowOffsetYInput" min="-200" max="200" step="1" value="0" />
+      </label>
+      <label><span data-i18n="textShadowBlur">Text shadow blur (px)</span>
+        <input type="number" id="textShadowBlurInput" min="0" max="200" step="1" value="0" />
+      </label>
+    </section>
+
+    <section class="menu-detail-section" id="menu-save-load">
+      <button type="button" id="saveLayoutBtn" data-i18n="saveJson">Save JSON</button>
+      <label class="file-upload-btn"><span data-i18n="loadJson">Load JSON</span>
+        <input type="file" id="loadLayoutInput" accept="application/json,.json" />
+      </label>
+    </section>
+  </aside>
+</div>
+
+  <script src="Script.js"></script>
+</body>
+</html>

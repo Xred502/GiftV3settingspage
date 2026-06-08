@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "giftcard": {
+    "backgroundColor": "#ffffff",
+    "backgroundImageDataUrl": null,
+    "textColor": "#000000"
+  },
+  "ui": {
+    "textTarget": "titlePreview",
+    "textVisibility": {
+      "titlePreview": true,
+      "messagePreview": true,
+      "infoPreview": true,
+      "amountPreview": true,
+      "identifierPreview": true,
+      "shortpassPreview": true,
+      "validtoPreview": true,
+      "bottomBackdropPreview": true
+    },
+    "bottomGroupStyle": {
+      "textColor": "#000000",
+      "backdropColor": "#000000",
+      "backdropOpacity": "23",
+      "backdropRect": {
+        "left": "0.159141%",
+        "top": "-66.644%",
+        "width": "101.874%",
+        "height": "213.007%"
+      },
+      "fontFamily": "",
+      "fontSize": "",
+      "fontWeight": "",
+      "textShadow": ""
+    }
+  },
+  "dataSource": {
+    "giftcardData": {
+      "enabled": true,
+      "url": "/api/giftcard-maker/giftcard/data",
+      "fields": {
+        "amountPreview": {
+          "inputId": "amountInput",
+          "token": "#AMOUNT#",
+          "apiKeys": [
+            "amount",
+            "value",
+            "Amount",
+            "Value"
+          ]
+        },
+        "identifierPreview": {
+          "inputId": "identifierInput",
+          "token": "#IDENTIFIER#",
+          "apiKeys": [
+            "identifier",
+            "cardNumber",
+            "Identifier",
+            "CardNumber"
+          ]
+        },
+        "shortpassPreview": {
+          "inputId": "shortpassInput",
+          "token": "#SHORTPASS#",
+          "apiKeys": [
+            "shortpass",
+            "shortPass",
+            "Shortpass",
+            "ShortPass"
+          ]
+        },
+        "validtoPreview": {
+          "inputId": "validToInput",
+          "token": "#VALIDTO#",
+          "apiKeys": [
+            "validTo",
+            "valid_to",
+            "expiresAt",
+            "ValidTo",
+            "ExpiryDate"
+          ]
+        }
+      }
+    }
+  },
+  "fields": {
+    "titlePreview": {
+      "inputId": "titleInput",
+      "text": "Microdeb Giftcard",
+      "top": "12.2171%",
+      "left": "21.4196%",
+      "width": "",
+      "height": "",
+      "fontFamily": "",
+      "fontSize": "50px",
+      "fontWeight": "",
+      "textShadow": ""
+    },
+    "messagePreview": {
+      "inputId": "messageInput",
+      "text": "Grattis!\nHär är ett litet presentkort som du kan använda på din favorithobby.",
+      "top": "39.08%",
+      "left": "7.85268%",
+      "width": "",
+      "height": "",
+      "fontFamily": "\"Courier New\", monospace",
+      "fontSize": "25px",
+      "fontWeight": "",
+      "textShadow": ""
+    },
+    "infoPreview": {
+      "inputId": "infoInput",
+      "text": "Vid frågor om presentkort eller om köp kontakta då oss på \nSupport@microdeb.se",
+      "top": "95.9381%",
+      "left": "28.1317%",
+      "width": "",
+      "height": "",
+      "fontFamily": "Georgia, serif",
+      "fontSize": "12px",
+      "fontWeight": "",
+      "textShadow": ""
+    },
+    "amountPreview": {
+      "inputId": "amountInput",
+      "text": "#AMOUNT#",
+      "top": "0%",
+      "left": "0%",
+      "width": "",
+      "height": "",
+      "fontFamily": "",
+      "fontSize": "",
+      "fontWeight": "",
+      "textShadow": ""
+    },
+    "identifierPreview": {
+      "inputId": "identifierInput",
+      "text": "#IDENTIFIER#",
+      "top": "83.6689%",
+      "left": "20.7946%",
+      "width": "56.1071%",
+      "height": "6.96394%",
+      "fontFamily": "",
+      "fontSize": "",
+      "fontWeight": "",
+      "textShadow": ""
+    },
+    "shortpassPreview": {
+      "inputId": "shortpassInput",
+      "text": "#SHORTPASS#",
+      "top": "83.6689%",
+      "left": "20.7946%",
+      "width": "56.1071%",
+      "height": "6.96394%",
+      "fontFamily": "",
+      "fontSize": "",
+      "fontWeight": "",
+      "textShadow": ""
+    },
+    "validtoPreview": {
+      "inputId": "validToInput",
+      "text": "#VALIDTO#",
+      "top": "83.6689%",
+      "left": "20.7946%",
+      "width": "56.1071%",
+      "height": "6.96394%",
+      "fontFamily": "",
+      "fontSize": "",
+      "fontWeight": "",
+      "textShadow": ""
+    }
+  }
+}

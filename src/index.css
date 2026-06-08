@@ -1,0 +1,1350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Giftcard Backoffice Design System 
+   All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --app-font: "Segoe UI", "Trebuchet MS", sans-serif;
+    --surface-glow: 217 91% 60%;
+    --hero-from: 210 60% 99%;
+    --hero-via: 220 40% 96%;
+    --hero-to: 214 48% 92%;
+    --pattern-color: 217 35% 75%;
+
+    --background: 220 14% 96%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 213 15% 65%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 217 91% 60%;
+  }
+
+  :root[data-backoffice-theme='portal'] {
+    --app-font: "Trebuchet MS", "Arial Narrow", sans-serif;
+    --background: 215 28% 9%;
+    --foreground: 210 40% 96%;
+    --card: 215 24% 13%;
+    --card-foreground: 210 40% 98%;
+    --popover: 215 24% 13%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 24 100% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 16%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 214 18% 18%;
+    --muted-foreground: 213 15% 72%;
+    --accent: 197 100% 58%;
+    --accent-foreground: 215 28% 9%;
+    --border: 213 21% 24%;
+    --input: 213 21% 24%;
+    --ring: 197 100% 58%;
+    --radius: 0.75rem;
+    --surface-glow: 24 100% 56%;
+    --hero-from: 218 34% 8%;
+    --hero-via: 214 25% 10%;
+    --hero-to: 215 21% 14%;
+    --pattern-color: 197 100% 58%;
+    --sidebar-background: 220 30% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 24 100% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 22% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 213 21% 20%;
+    --sidebar-ring: 197 100% 58%;
+  }
+
+  :root[data-backoffice-theme='wii'] {
+    --app-font: Verdana, "Segoe UI", sans-serif;
+    --background: 200 56% 97%;
+    --foreground: 210 30% 24%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 24%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 24%;
+    --primary: 199 89% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 198 46% 93%;
+    --secondary-foreground: 210 30% 24%;
+    --muted: 198 46% 93%;
+    --muted-foreground: 210 18% 46%;
+    --accent: 188 83% 67%;
+    --accent-foreground: 210 30% 20%;
+    --border: 200 32% 85%;
+    --input: 200 32% 85%;
+    --ring: 199 89% 55%;
+    --radius: 1.75rem;
+    --surface-glow: 199 89% 55%;
+    --hero-from: 192 100% 98%;
+    --hero-via: 199 68% 95%;
+    --hero-to: 208 54% 90%;
+    --pattern-color: 200 51% 78%;
+    --sidebar-background: 201 61% 92%;
+    --sidebar-foreground: 210 30% 24%;
+    --sidebar-primary: 199 89% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 100%;
+    --sidebar-accent-foreground: 210 30% 24%;
+    --sidebar-border: 200 32% 85%;
+    --sidebar-ring: 199 89% 55%;
+  }
+
+  :root[data-backoffice-theme='modern'] {
+    --app-font: "Segoe UI", "Aptos", sans-serif;
+    --background: 222 27% 96%;
+    --foreground: 224 28% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 28% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 28% 14%;
+    --primary: 214 84% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 31% 94%;
+    --secondary-foreground: 224 28% 14%;
+    --muted: 210 31% 94%;
+    --muted-foreground: 220 14% 41%;
+    --accent: 160 84% 39%;
+    --accent-foreground: 0 0% 100%;
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 214 84% 56%;
+    --radius: 1.25rem;
+    --surface-glow: 214 84% 56%;
+    --hero-from: 210 100% 99%;
+    --hero-via: 224 57% 96%;
+    --hero-to: 200 52% 92%;
+    --pattern-color: 211 41% 80%;
+    --sidebar-background: 225 40% 14%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 214 84% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 225 29% 20%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 224 30% 20%;
+    --sidebar-ring: 214 84% 56%;
+  }
+
+  :root[data-backoffice-theme='microdeb'] {
+    --app-font: "Montserrat", "Segoe UI", "Trebuchet MS", sans-serif;
+    --background: 210 30% 98%;
+    --foreground: 219 22% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 219 22% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 219 22% 7%;
+    --primary: 95 54% 58%;
+    --primary-foreground: 219 22% 7%;
+    --secondary: 220 26% 95%;
+    --secondary-foreground: 223 36% 18%;
+    --muted: 220 22% 94%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 227 42% 29%;
+    --accent-foreground: 0 0% 100%;
+    --border: 220 20% 84%;
+    --input: 220 20% 84%;
+    --ring: 95 54% 58%;
+    --radius: 1rem;
+    --surface-glow: 95 54% 58%;
+    --hero-from: 210 33% 99%;
+    --hero-via: 219 35% 95%;
+    --hero-to: 227 32% 90%;
+    --pattern-color: 227 24% 56%;
+    --sidebar-background: 227 42% 29%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 95 54% 58%;
+    --sidebar-primary-foreground: 219 22% 7%;
+    --sidebar-accent: 228 24% 36%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 228 24% 24%;
+    --sidebar-ring: 95 54% 58%;
+  }
+
+  :root[data-backoffice-theme='microdeb-dark'] {
+    --app-font: "Montserrat", "Segoe UI", "Trebuchet MS", sans-serif;
+    --background: 227 42% 20%;
+    --foreground: 0 0% 100%;
+    --card: 227 34% 24%;
+    --card-foreground: 0 0% 100%;
+    --popover: 227 34% 24%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 95 61% 58%;
+    --primary-foreground: 219 22% 7%;
+    --secondary: 227 27% 28%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 227 24% 30%;
+    --muted-foreground: 220 19% 78%;
+    --accent: 227 27% 48%;
+    --accent-foreground: 0 0% 100%;
+    --border: 227 24% 38%;
+    --input: 227 24% 38%;
+    --ring: 95 61% 58%;
+    --radius: 1rem;
+    --surface-glow: 95 61% 58%;
+    --hero-from: 228 57% 15%;
+    --hero-via: 227 45% 20%;
+    --hero-to: 221 33% 26%;
+    --pattern-color: 95 42% 62%;
+    --sidebar-background: 228 57% 14%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 95 61% 58%;
+    --sidebar-primary-foreground: 219 22% 7%;
+    --sidebar-accent: 227 28% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 227 22% 22%;
+    --sidebar-ring: 95 61% 58%;
+  }
+
+  :root[data-backoffice-theme='retro'] {
+    --app-font: "Courier New", monospace;
+    --background: 120 16% 8%;
+    --foreground: 120 100% 84%;
+    --card: 120 14% 11%;
+    --card-foreground: 120 100% 84%;
+    --popover: 120 14% 11%;
+    --popover-foreground: 120 100% 84%;
+    --primary: 120 100% 65%;
+    --primary-foreground: 120 16% 8%;
+    --secondary: 120 12% 14%;
+    --secondary-foreground: 120 100% 84%;
+    --muted: 120 12% 14%;
+    --muted-foreground: 120 36% 64%;
+    --accent: 49 100% 58%;
+    --accent-foreground: 120 16% 8%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 120 28% 22%;
+    --input: 120 28% 22%;
+    --ring: 120 100% 65%;
+    --radius: 0.15rem;
+    --surface-glow: 120 100% 65%;
+    --hero-from: 120 16% 7%;
+    --hero-via: 120 18% 9%;
+    --hero-to: 120 22% 12%;
+    --pattern-color: 120 40% 24%;
+    --sidebar-background: 120 16% 6%;
+    --sidebar-foreground: 120 100% 84%;
+    --sidebar-primary: 120 100% 65%;
+    --sidebar-primary-foreground: 120 16% 8%;
+    --sidebar-accent: 120 12% 12%;
+    --sidebar-accent-foreground: 120 100% 84%;
+    --sidebar-border: 120 28% 18%;
+    --sidebar-ring: 120 100% 65%;
+  }
+
+  :root[data-backoffice-theme='warm'] {
+    --app-font: "Trebuchet MS", "Segoe UI", sans-serif;
+    --background: 30 50% 95%;
+    --foreground: 18 34% 20%;
+    --card: 36 100% 98%;
+    --card-foreground: 18 34% 20%;
+    --popover: 36 100% 98%;
+    --popover-foreground: 18 34% 20%;
+    --primary: 17 78% 54%;
+    --primary-foreground: 36 100% 98%;
+    --secondary: 35 56% 91%;
+    --secondary-foreground: 18 34% 20%;
+    --muted: 35 56% 91%;
+    --muted-foreground: 20 18% 43%;
+    --accent: 43 90% 60%;
+    --accent-foreground: 18 34% 16%;
+    --border: 28 35% 84%;
+    --input: 28 35% 84%;
+    --ring: 17 78% 54%;
+    --radius: 1.5rem;
+    --surface-glow: 17 78% 54%;
+    --hero-from: 36 100% 98%;
+    --hero-via: 33 66% 93%;
+    --hero-to: 16 69% 87%;
+    --pattern-color: 23 43% 72%;
+    --sidebar-background: 19 55% 22%;
+    --sidebar-foreground: 36 100% 96%;
+    --sidebar-primary: 17 78% 54%;
+    --sidebar-primary-foreground: 36 100% 98%;
+    --sidebar-accent: 20 43% 30%;
+    --sidebar-accent-foreground: 36 100% 96%;
+    --sidebar-border: 20 43% 30%;
+    --sidebar-ring: 43 90% 60%;
+  }
+
+  :root[data-backoffice-theme='water'] {
+    --app-font: "Segoe UI", "Aptos", sans-serif;
+    --background: 248 42% 8%;
+    --foreground: 210 100% 96%;
+    --card: 247 34% 14%;
+    --card-foreground: 210 100% 96%;
+    --popover: 247 34% 14%;
+    --popover-foreground: 210 100% 96%;
+    --primary: 319 100% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 248 28% 18%;
+    --secondary-foreground: 210 100% 96%;
+    --muted: 248 24% 17%;
+    --muted-foreground: 225 16% 72%;
+    --accent: 194 100% 58%;
+    --accent-foreground: 247 48% 8%;
+    --border: 249 24% 27%;
+    --input: 249 24% 27%;
+    --ring: 319 100% 58%;
+    --radius: 1.35rem;
+    --surface-glow: 319 100% 58%;
+    --hero-from: 250 63% 6%;
+    --hero-via: 287 54% 11%;
+    --hero-to: 201 88% 10%;
+    --pattern-color: 279 52% 44%;
+    --sidebar-background: 249 45% 7%;
+    --sidebar-foreground: 210 100% 96%;
+    --sidebar-primary: 319 100% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 248 29% 17%;
+    --sidebar-accent-foreground: 210 100% 96%;
+    --sidebar-border: 248 29% 17%;
+    --sidebar-ring: 194 100% 58%;
+  }
+
+  :root[data-backoffice-theme='galaxy'] {
+    --app-font: "Segoe UI", "Trebuchet MS", sans-serif;
+    --background: 245 34% 9%;
+    --foreground: 226 100% 96%;
+    --card: 246 31% 14%;
+    --card-foreground: 226 100% 96%;
+    --popover: 246 31% 14%;
+    --popover-foreground: 226 100% 96%;
+    --primary: 282 85% 66%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 241 25% 18%;
+    --secondary-foreground: 226 100% 96%;
+    --muted: 241 25% 18%;
+    --muted-foreground: 227 33% 73%;
+    --accent: 195 95% 61%;
+    --accent-foreground: 245 34% 9%;
+    --border: 244 22% 24%;
+    --input: 244 22% 24%;
+    --ring: 282 85% 66%;
+    --radius: 1.35rem;
+    --surface-glow: 282 85% 66%;
+    --hero-from: 245 38% 8%;
+    --hero-via: 249 34% 12%;
+    --hero-to: 216 55% 16%;
+    --pattern-color: 231 45% 45%;
+    --sidebar-background: 246 40% 10%;
+    --sidebar-foreground: 226 100% 96%;
+    --sidebar-primary: 282 85% 66%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 241 25% 18%;
+    --sidebar-accent-foreground: 226 100% 96%;
+    --sidebar-border: 244 22% 24%;
+    --sidebar-ring: 195 95% 61%;
+  }
+
+  :root[data-backoffice-theme='wood'] {
+    --app-font: Georgia, "Trebuchet MS", serif;
+    --background: 33 28% 92%;
+    --foreground: 24 31% 19%;
+    --card: 34 42% 97%;
+    --card-foreground: 24 31% 19%;
+    --popover: 34 42% 97%;
+    --popover-foreground: 24 31% 19%;
+    --primary: 28 52% 37%;
+    --primary-foreground: 33 30% 96%;
+    --secondary: 32 30% 87%;
+    --secondary-foreground: 24 31% 19%;
+    --muted: 32 30% 87%;
+    --muted-foreground: 24 16% 40%;
+    --accent: 18 60% 54%;
+    --accent-foreground: 33 30% 96%;
+    --border: 29 24% 76%;
+    --input: 29 24% 76%;
+    --ring: 28 52% 37%;
+    --radius: 1.1rem;
+    --surface-glow: 28 52% 37%;
+    --hero-from: 37 39% 95%;
+    --hero-via: 33 27% 89%;
+    --hero-to: 25 33% 82%;
+    --pattern-color: 28 26% 63%;
+    --sidebar-background: 25 36% 21%;
+    --sidebar-foreground: 36 33% 94%;
+    --sidebar-primary: 18 60% 54%;
+    --sidebar-primary-foreground: 33 30% 96%;
+    --sidebar-accent: 29 30% 29%;
+    --sidebar-accent-foreground: 36 33% 94%;
+    --sidebar-border: 29 30% 29%;
+    --sidebar-ring: 18 60% 54%;
+  }
+
+  :root[data-backoffice-theme='swamp'] {
+    --app-font: "Trebuchet MS", "Segoe UI", sans-serif;
+    --background: 104 18% 14%;
+    --foreground: 84 25% 88%;
+    --card: 102 16% 18%;
+    --card-foreground: 84 25% 88%;
+    --popover: 102 16% 18%;
+    --popover-foreground: 84 25% 88%;
+    --primary: 82 41% 43%;
+    --primary-foreground: 84 25% 92%;
+    --secondary: 94 15% 22%;
+    --secondary-foreground: 84 25% 88%;
+    --muted: 94 15% 22%;
+    --muted-foreground: 88 14% 66%;
+    --accent: 153 38% 39%;
+    --accent-foreground: 84 25% 92%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 93 16% 28%;
+    --input: 93 16% 28%;
+    --ring: 153 38% 39%;
+    --radius: 1rem;
+    --surface-glow: 153 38% 39%;
+    --hero-from: 106 19% 12%;
+    --hero-via: 101 17% 15%;
+    --hero-to: 84 19% 18%;
+    --pattern-color: 88 18% 32%;
+    --sidebar-background: 104 20% 11%;
+    --sidebar-foreground: 84 25% 88%;
+    --sidebar-primary: 82 41% 43%;
+    --sidebar-primary-foreground: 84 25% 92%;
+    --sidebar-accent: 94 15% 22%;
+    --sidebar-accent-foreground: 84 25% 88%;
+    --sidebar-border: 93 16% 24%;
+    --sidebar-ring: 153 38% 39%;
+  }
+
+  :root[data-backoffice-theme='autumn'] {
+    --app-font: "Trebuchet MS", "Segoe UI", sans-serif;
+    --background: 30 54% 95%;
+    --foreground: 13 33% 20%;
+    --card: 38 100% 98%;
+    --card-foreground: 13 33% 20%;
+    --popover: 38 100% 98%;
+    --popover-foreground: 13 33% 20%;
+    --primary: 18 78% 47%;
+    --primary-foreground: 38 100% 98%;
+    --secondary: 34 56% 90%;
+    --secondary-foreground: 13 33% 20%;
+    --muted: 34 56% 90%;
+    --muted-foreground: 14 18% 43%;
+    --accent: 41 95% 57%;
+    --accent-foreground: 13 33% 18%;
+    --border: 26 35% 82%;
+    --input: 26 35% 82%;
+    --ring: 18 78% 47%;
+    --radius: 1.3rem;
+    --surface-glow: 18 78% 47%;
+    --hero-from: 39 100% 97%;
+    --hero-via: 32 77% 92%;
+    --hero-to: 9 72% 84%;
+    --pattern-color: 22 49% 70%;
+    --sidebar-background: 13 43% 22%;
+    --sidebar-foreground: 36 100% 95%;
+    --sidebar-primary: 18 78% 47%;
+    --sidebar-primary-foreground: 38 100% 98%;
+    --sidebar-accent: 8 37% 30%;
+    --sidebar-accent-foreground: 36 100% 95%;
+    --sidebar-border: 8 37% 30%;
+    --sidebar-ring: 41 95% 57%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+
+    --sidebar-background: 222 47% 7%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--app-font);
+    background-image:
+      radial-gradient(circle at top left, hsl(var(--surface-glow) / 0.15), transparent 28%),
+      linear-gradient(135deg, hsl(var(--hero-from)), hsl(var(--hero-via)) 52%, hsl(var(--hero-to)));
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .backoffice-shell {
+    position: relative;
+    overflow: hidden;
+    font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  }
+
+  .backoffice-shell::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.26;
+    background-image:
+      linear-gradient(hsl(var(--pattern-color) / 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--pattern-color) / 0.12) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.58), transparent 92%);
+  }
+
+  .backoffice-header {
+    background: hsl(var(--background) / 0.72);
+    backdrop-filter: blur(18px);
+  }
+
+  .backoffice-toolbar {
+    position: relative;
+  }
+
+  .backoffice-toolbar::after {
+    content: "";
+    position: absolute;
+    inset: auto -10% -60% 35%;
+    height: 12rem;
+    background: radial-gradient(circle, hsl(var(--surface-glow) / 0.18), transparent 70%);
+    pointer-events: none;
+  }
+
+  .backoffice-orb {
+    position: fixed;
+    width: 28rem;
+    height: 28rem;
+    border-radius: 9999px;
+    filter: blur(60px);
+    opacity: 0.22;
+    pointer-events: none;
+    background: radial-gradient(circle, hsl(var(--surface-glow) / 0.45), transparent 68%);
+  }
+
+  .backoffice-orb-1 {
+    top: -8rem;
+    right: -8rem;
+  }
+
+  .backoffice-orb-2 {
+    bottom: -12rem;
+    left: -10rem;
+    opacity: 0.16;
+  }
+
+  .brand-mark {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.9rem;
+  }
+
+  .brand-mark::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    border: 1px solid hsl(var(--foreground) / 0.08);
+  }
+
+  .nav-pill {
+    backdrop-filter: blur(8px);
+  }
+
+  .theme-card {
+    border-radius: calc(var(--radius) * 1.2);
+    border: 1px solid hsl(var(--border));
+    padding: 1rem;
+    background:
+      linear-gradient(160deg, hsl(var(--background) / 0.88), hsl(var(--card)) 60%),
+      radial-gradient(circle at top right, hsl(var(--surface-glow) / 0.2), transparent 40%);
+    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.18);
+  }
+
+  .theme-card:hover {
+    transform: translateY(-2px);
+    border-color: hsl(var(--ring) / 0.55);
+  }
+
+  .theme-card-active {
+    border-color: hsl(var(--ring));
+    box-shadow:
+      0 18px 40px -24px hsl(var(--surface-glow) / 0.55),
+      inset 0 0 0 1px hsl(var(--ring) / 0.35);
+  }
+
+  .theme-card-kicker {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    background: hsl(var(--primary) / 0.12);
+    color: hsl(var(--foreground));
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  :root[data-backoffice-theme='warm'] body {
+    background-image:
+      radial-gradient(58% 110% at 0% 50%, hsl(var(--primary) / 0.42), transparent 70%),
+      radial-gradient(55% 110% at 100% 46%, hsl(var(--accent) / 0.4), transparent 72%),
+      radial-gradient(circle at 50% 12%, hsl(36 100% 98% / 0.75), transparent 38%),
+      linear-gradient(148deg, hsl(36 100% 98%), hsl(33 66% 92%) 54%, hsl(16 69% 86%));
+  }
+
+  :root[data-backoffice-theme='water'] body {
+    background-image:
+      radial-gradient(74% 126% at 0% 100%, hsl(319 100% 58% / 0.68) 0 32%, transparent 66%),
+      radial-gradient(74% 126% at 100% 100%, hsl(194 100% 58% / 0.58) 0 30%, transparent 66%),
+      radial-gradient(48% 92% at 50% 82%, hsl(282 90% 62% / 0.42) 0 24%, transparent 56%),
+      radial-gradient(40% 50% at 26% 58%, hsl(319 100% 80% / 0.24), transparent 72%),
+      radial-gradient(40% 50% at 74% 56%, hsl(194 100% 78% / 0.2), transparent 72%),
+      linear-gradient(180deg, hsl(0 0% 0% / 0.38), transparent 36%),
+      linear-gradient(160deg, hsl(251 62% 5%), hsl(274 52% 9%) 46%, hsl(202 88% 9%));
+  }
+
+  :root[data-backoffice-theme='wood'] body {
+    background-image:
+      repeating-linear-gradient(
+        92deg,
+        hsl(28 52% 37% / 0.16) 0 3px,
+        hsl(28 33% 55% / 0.08) 3px 9px,
+        hsl(24 30% 44% / 0.12) 9px 16px,
+        transparent 16px 30px
+      ),
+      radial-gradient(26% 18% at 22% 34%, hsl(24 44% 35% / 0.14), transparent 70%),
+      radial-gradient(22% 16% at 72% 62%, hsl(18 47% 43% / 0.12), transparent 72%),
+      linear-gradient(155deg, hsl(37 39% 95%), hsl(33 29% 89%) 55%, hsl(25 33% 82%));
+  }
+
+  :root[data-backoffice-theme='portal'] .backoffice-shell::before {
+    background-image:
+      linear-gradient(hsl(var(--pattern-color) / 0.14) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--pattern-color) / 0.08) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  :root[data-backoffice-theme='portal'] .brand-mark {
+    background:
+      linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+
+  :root[data-backoffice-theme='wii'] .backoffice-shell::before {
+    background-image:
+      radial-gradient(circle at 16px 16px, hsl(var(--pattern-color) / 0.18) 2px, transparent 0),
+      linear-gradient(180deg, transparent, transparent);
+    background-size: 36px 36px;
+    opacity: 0.38;
+  }
+
+  :root[data-backoffice-theme='wii'] .theme-card,
+  :root[data-backoffice-theme='wii'] .backoffice-toolbar,
+  :root[data-backoffice-theme='wii'] .nav-pill {
+    box-shadow:
+      0 18px 50px -36px hsl(199 89% 55% / 0.4),
+      inset 0 1px 0 hsl(0 0% 100% / 0.9);
+  }
+
+  :root[data-backoffice-theme='modern'] .backoffice-shell::before {
+    background-image:
+      linear-gradient(hsl(var(--pattern-color) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--pattern-color) / 0.08) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  :root[data-backoffice-theme='microdeb'] .backoffice-shell::before {
+    background-image:
+      linear-gradient(135deg, hsl(var(--pattern-color) / 0.13) 1px, transparent 1px),
+      linear-gradient(45deg, hsl(var(--pattern-color) / 0.09) 1px, transparent 1px);
+    background-size: 34px 34px;
+    opacity: 0.3;
+  }
+
+  :root[data-backoffice-theme='microdeb-dark'] .backoffice-shell::before {
+    background-image:
+      linear-gradient(135deg, hsl(var(--pattern-color) / 0.14) 1px, transparent 1px),
+      radial-gradient(circle at 24px 24px, hsl(var(--surface-glow) / 0.11) 3px, transparent 0);
+    background-size: 36px 36px, 108px 108px;
+    opacity: 0.34;
+    mask-image: none;
+  }
+
+  :root[data-backoffice-theme='warm'] .backoffice-shell::before {
+    background-image:
+      linear-gradient(90deg, hsl(var(--primary) / 0.28), transparent 16%, transparent 84%, hsl(var(--accent) / 0.24)),
+      radial-gradient(80% 120% at 0% 50%, hsl(var(--accent) / 0.26), transparent 62%),
+      radial-gradient(80% 120% at 100% 45%, hsl(var(--primary) / 0.24), transparent 64%),
+      repeating-linear-gradient(26deg, hsl(var(--pattern-color) / 0.16) 0 2px, transparent 2px 18px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 240px 150px;
+    opacity: 0.48;
+    mask-image: none;
+  }
+
+  :root[data-backoffice-theme='water'] .backoffice-shell::before {
+    background-image:
+      radial-gradient(140% 120% at -4% 102%, hsl(var(--surface-glow) / 0.38), transparent 56%),
+      radial-gradient(140% 120% at 104% 102%, hsl(var(--accent) / 0.34), transparent 56%),
+      radial-gradient(82% 86% at 50% 86%, hsl(282 90% 62% / 0.26), transparent 68%),
+      radial-gradient(70% 80% at 22% 64%, hsl(var(--surface-glow) / 0.18), transparent 70%),
+      radial-gradient(70% 80% at 78% 62%, hsl(var(--accent) / 0.15), transparent 72%),
+      linear-gradient(180deg, hsl(0 0% 100% / 0.16), transparent 26%);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    opacity: 0.5;
+    mask-image: none;
+  }
+
+  :root[data-backoffice-theme='galaxy'] .backoffice-shell::before {
+    background-image:
+      radial-gradient(circle at 20% 20%, hsl(0 0% 100% / 0.45) 1px, transparent 2px),
+      radial-gradient(circle at 80% 30%, hsl(0 0% 100% / 0.35) 1px, transparent 2px),
+      radial-gradient(circle at 60% 70%, hsl(var(--pattern-color) / 0.18) 1px, transparent 3px);
+    background-size: 180px 180px, 220px 220px, 140px 140px;
+    opacity: 0.42;
+    mask-image: none;
+  }
+
+  :root[data-backoffice-theme='wood'] .backoffice-shell::before {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        hsl(var(--pattern-color) / 0.3) 0 3px,
+        hsl(var(--pattern-color) / 0.12) 3px 10px,
+        transparent 10px 24px
+      ),
+      repeating-linear-gradient(84deg, hsl(var(--accent) / 0.1) 0 1px, transparent 1px 14px),
+      radial-gradient(28% 20% at 26% 34%, hsl(var(--surface-glow) / 0.18), transparent 70%),
+      radial-gradient(24% 18% at 76% 62%, hsl(var(--accent) / 0.12), transparent 74%);
+    background-size: 180px 100%, 100% 22px, 100% 100%, 100% 100%;
+    opacity: 0.42;
+    mask-image: none;
+  }
+
+  :root[data-backoffice-theme='swamp'] .backoffice-shell::before {
+    background-image:
+      radial-gradient(circle at 24px 24px, hsl(var(--pattern-color) / 0.24) 5px, transparent 0),
+      radial-gradient(circle at 72px 54px, hsl(var(--pattern-color) / 0.12) 4px, transparent 0);
+    background-size: 120px 88px, 140px 120px;
+    opacity: 0.24;
+    mask-image: none;
+  }
+
+  :root[data-backoffice-theme='autumn'] .backoffice-shell::before {
+    background-image:
+      radial-gradient(circle at 18px 18px, hsl(var(--pattern-color) / 0.18) 4px, transparent 0),
+      radial-gradient(circle at 64px 28px, hsl(var(--accent) / 0.1) 3px, transparent 0),
+      linear-gradient(180deg, transparent, transparent);
+    background-size: 96px 64px, 120px 90px, 100% 100%;
+    opacity: 0.3;
+  }
+
+  :root[data-backoffice-theme='retro'] body {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.18);
+  }
+
+  :root[data-backoffice-theme='retro'] .backoffice-shell::before {
+    background-image:
+      linear-gradient(hsl(var(--pattern-color) / 0.36) 1px, transparent 1px),
+      linear-gradient(180deg, hsl(120 100% 65% / 0.05), transparent 55%);
+    background-size: 100% 4px, 100% 100%;
+    opacity: 0.34;
+    mask-image: none;
+  }
+
+  :root[data-backoffice-theme='retro'] .theme-card,
+  :root[data-backoffice-theme='retro'] .backoffice-toolbar,
+  :root[data-backoffice-theme='retro'] .brand-mark {
+    box-shadow:
+      0 0 0 1px hsl(var(--border)),
+      0 0 22px hsl(var(--primary) / 0.12);
+  }
+
+  .backoffice-shell .rounded-lg.border.bg-card,
+  .backoffice-shell .rounded-\[calc\(var\(--radius\)\*2\)\],
+  .backoffice-shell table,
+  .backoffice-shell [role="dialog"],
+  .backoffice-shell .recharts-wrapper,
+  .backoffice-shell input,
+  .backoffice-shell select,
+  .backoffice-shell textarea {
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  input[type='date'] {
+    color-scheme: var(--calendar-color-scheme, light);
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0.92;
+    filter: var(--calendar-icon-filter, none);
+    cursor: pointer;
+  }
+
+  .date-input-control::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    display: none;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+
+  .date-input-control::-webkit-clear-button,
+  .date-input-control::-webkit-inner-spin-button {
+    display: none;
+  }
+
+  :root[data-backoffice-theme='microdeb-dark'],
+  body[data-backoffice-theme='microdeb-dark'],
+  :root[data-backoffice-theme='water'],
+  body[data-backoffice-theme='water'],
+  :root[data-backoffice-theme='galaxy'],
+  body[data-backoffice-theme='galaxy'],
+  :root[data-backoffice-theme='swamp'],
+  body[data-backoffice-theme='swamp'],
+  :root[data-backoffice-theme='retro'],
+  body[data-backoffice-theme='retro'],
+  :root[data-backoffice-theme='portal'],
+  body[data-backoffice-theme='portal'] {
+    --calendar-icon-filter: invert(1) brightness(1.25);
+    --calendar-color-scheme: dark;
+  }
+
+  .dashboard-chart-tooltip {
+    border-color: hsl(var(--border)) !important;
+    background: hsl(var(--popover)) !important;
+    color: hsl(var(--popover-foreground)) !important;
+    box-shadow: 0 20px 45px -28px hsl(var(--foreground) / 0.45) !important;
+  }
+
+  .dashboard-chart-tooltip .text-muted-foreground {
+    color: hsl(var(--foreground) / 0.78) !important;
+  }
+
+  .theme-portal .rounded-lg.border.bg-card,
+  .theme-portal table {
+    background:
+      linear-gradient(180deg, hsl(215 24% 14% / 0.98), hsl(214 20% 11% / 0.98));
+    box-shadow:
+      inset 0 1px 0 hsl(197 100% 58% / 0.08),
+      0 18px 40px -28px rgba(0, 0, 0, 0.75);
+  }
+
+  .theme-portal .nav-pill,
+  .theme-portal button[class*="bg-primary"],
+  .theme-portal .brand-mark {
+    box-shadow: 0 0 0 1px hsl(197 100% 58% / 0.18), 0 18px 40px -24px hsl(24 100% 56% / 0.45);
+  }
+
+  .theme-wii .rounded-lg.border.bg-card,
+  .theme-wii table {
+    border-radius: 1.75rem;
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.96), hsl(198 67% 98% / 0.96));
+    box-shadow:
+      0 20px 45px -34px hsl(199 89% 55% / 0.35),
+      inset 0 1px 0 hsl(0 0% 100%);
+  }
+
+  .theme-wii .nav-pill,
+  .theme-wii button {
+    border-radius: 999px;
+  }
+
+  .theme-wii .brand-mark {
+    border-radius: 0.9rem;
+  }
+
+  .theme-modern .rounded-lg.border.bg-card,
+  .theme-modern table {
+    background:
+      linear-gradient(180deg, hsl(0 0% 100% / 0.92), hsl(210 33% 97% / 0.9)),
+      radial-gradient(circle at top right, hsl(214 84% 56% / 0.08), transparent 35%);
+    box-shadow:
+      0 24px 60px -36px hsl(224 30% 20% / 0.25),
+      inset 0 1px 0 hsl(0 0% 100%);
+  }
+
+  .theme-microdeb .rounded-lg.border.bg-card,
+  .theme-microdeb table {
+    border-radius: 1rem;
+    background:
+      linear-gradient(180deg, hsl(0 0% 100% / 0.97), hsl(219 43% 98% / 0.94)),
+      radial-gradient(circle at top right, hsl(95 54% 58% / 0.16), transparent 34%);
+    box-shadow:
+      0 24px 60px -40px hsl(227 42% 29% / 0.24),
+      inset 0 1px 0 hsl(0 0% 100%);
+  }
+
+  .theme-microdeb-dark .rounded-lg.border.bg-card,
+  .theme-microdeb-dark table,
+  .theme-microdeb-dark input,
+  .theme-microdeb-dark select,
+  .theme-microdeb-dark textarea {
+    border-radius: 1rem;
+    background:
+      linear-gradient(180deg, hsl(227 34% 24% / 0.97), hsl(227 40% 19% / 0.97)),
+      radial-gradient(circle at top right, hsl(95 61% 58% / 0.14), transparent 34%);
+    box-shadow:
+      0 26px 64px -42px hsl(0 0% 0% / 0.42),
+      inset 0 1px 0 hsl(0 0% 100% / 0.08);
+  }
+
+  .theme-warm .rounded-lg.border.bg-card,
+  .theme-warm table {
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(180deg, hsl(36 100% 98% / 0.97), hsl(35 72% 95% / 0.95)),
+      radial-gradient(circle at top right, hsl(17 78% 54% / 0.14), transparent 34%);
+    box-shadow:
+      0 26px 64px -42px hsl(17 78% 54% / 0.28),
+      inset 0 1px 0 hsl(0 0% 100%);
+  }
+
+  .theme-water .rounded-lg.border.bg-card,
+  .theme-water table {
+    border-radius: 1.45rem;
+    background:
+      linear-gradient(165deg, hsl(248 36% 14% / 0.96), hsl(250 42% 10% / 0.94)),
+      radial-gradient(circle at top left, hsl(319 100% 58% / 0.24), transparent 40%),
+      radial-gradient(circle at top right, hsl(194 100% 58% / 0.18), transparent 42%);
+    box-shadow:
+      0 26px 68px -42px hsl(319 100% 58% / 0.3),
+      inset 0 1px 0 hsl(0 0% 100% / 0.1);
+  }
+
+  .theme-galaxy .rounded-lg.border.bg-card,
+  .theme-galaxy table {
+    background:
+      linear-gradient(180deg, hsl(246 31% 15% / 0.96), hsl(245 34% 11% / 0.96)),
+      radial-gradient(circle at top right, hsl(282 85% 66% / 0.16), transparent 34%),
+      radial-gradient(circle at bottom left, hsl(195 95% 61% / 0.12), transparent 28%);
+    box-shadow:
+      0 28px 70px -40px hsl(282 85% 66% / 0.25),
+      inset 0 1px 0 hsl(0 0% 100% / 0.08);
+  }
+
+  .theme-wood .rounded-lg.border.bg-card,
+  .theme-wood table {
+    background:
+      linear-gradient(180deg, hsl(34 42% 97% / 0.98), hsl(33 31% 92% / 0.96)),
+      linear-gradient(8deg, hsl(28 26% 63% / 0.08) 0 2px, transparent 2px 18px);
+    box-shadow:
+      0 24px 60px -40px hsl(28 52% 37% / 0.2),
+      inset 0 1px 0 hsl(0 0% 100% / 0.4);
+  }
+
+  .theme-swamp .rounded-lg.border.bg-card,
+  .theme-swamp table,
+  .theme-swamp input,
+  .theme-swamp select,
+  .theme-swamp textarea {
+    background:
+      linear-gradient(180deg, hsl(102 16% 18% / 0.96), hsl(102 14% 15% / 0.96)),
+      radial-gradient(circle at top right, hsl(153 38% 39% / 0.12), transparent 34%);
+    box-shadow:
+      0 24px 60px -40px hsl(0 0% 0% / 0.3),
+      inset 0 1px 0 hsl(84 25% 88% / 0.06);
+  }
+
+  .theme-autumn .rounded-lg.border.bg-card,
+  .theme-autumn table {
+    background:
+      linear-gradient(180deg, hsl(38 100% 98% / 0.98), hsl(33 67% 94% / 0.95)),
+      radial-gradient(circle at top right, hsl(18 78% 47% / 0.14), transparent 34%);
+    box-shadow:
+      0 26px 64px -42px hsl(18 78% 47% / 0.22),
+      inset 0 1px 0 hsl(0 0% 100%);
+  }
+
+  .theme-retro .rounded-lg.border.bg-card,
+  .theme-retro table,
+  .theme-retro input,
+  .theme-retro select,
+  .theme-retro textarea {
+    border-radius: 0.15rem;
+    background: hsl(120 14% 10%);
+    box-shadow:
+      0 0 0 1px hsl(120 28% 22%),
+      inset 0 0 24px hsl(120 100% 65% / 0.04);
+  }
+
+  .theme-retro .nav-pill,
+  .theme-retro .brand-mark,
+  .theme-retro button {
+    border-radius: 0.15rem;
+  }
+
+  .theme-microdeb .nav-pill,
+  .theme-microdeb .brand-mark,
+  .theme-microdeb button {
+    border-radius: 0.9rem;
+    box-shadow: 0 16px 36px -26px hsl(227 42% 29% / 0.24);
+  }
+
+  .theme-microdeb-dark .nav-pill,
+  .theme-microdeb-dark .brand-mark,
+  .theme-microdeb-dark button {
+    border-radius: 0.9rem;
+    box-shadow:
+      0 16px 38px -26px hsl(0 0% 0% / 0.48),
+      0 0 0 1px hsl(95 61% 58% / 0.12);
+  }
+
+  .theme-warm .nav-pill,
+  .theme-warm button {
+    border-radius: 999px;
+  }
+
+  .theme-warm .brand-mark,
+  .theme-warm .login-brand {
+    border-radius: 0.9rem;
+  }
+
+  .theme-water .nav-pill,
+  .theme-water button {
+    border-radius: 999px;
+    box-shadow:
+      0 16px 42px -28px hsl(319 100% 58% / 0.36),
+      0 0 0 1px hsl(194 100% 58% / 0.18);
+  }
+
+  .theme-water .brand-mark {
+    border-radius: 0.9rem;
+  }
+
+  .theme-galaxy .nav-pill,
+  .theme-galaxy .brand-mark,
+  .theme-galaxy button {
+    box-shadow: 0 18px 42px -26px hsl(282 85% 66% / 0.28);
+  }
+
+  .theme-wood .nav-pill,
+  .theme-wood .brand-mark,
+  .theme-wood button {
+    border-radius: 1rem;
+    box-shadow: 0 18px 42px -28px hsl(28 52% 37% / 0.2);
+  }
+
+  .theme-swamp .nav-pill,
+  .theme-swamp .brand-mark,
+  .theme-swamp button {
+    border-radius: 1rem;
+    box-shadow: 0 18px 42px -28px hsl(153 38% 39% / 0.14);
+  }
+
+  .theme-autumn .nav-pill,
+  .theme-autumn button {
+    border-radius: 999px;
+    box-shadow: 0 18px 42px -28px hsl(18 78% 47% / 0.22);
+  }
+
+  .theme-autumn .brand-mark,
+  .theme-autumn .login-brand {
+    border-radius: 0.9rem;
+  }
+
+  .theme-retro .recharts-cartesian-grid line,
+  .theme-retro .recharts-sector,
+  .theme-retro .recharts-rectangle {
+    filter: drop-shadow(0 0 6px hsl(120 100% 65% / 0.12));
+  }
+
+  .login-shell {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .login-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at top right, hsl(var(--surface-glow) / 0.18), transparent 28%),
+      radial-gradient(circle at bottom left, hsl(var(--accent) / 0.14), transparent 24%);
+  }
+
+  .login-card {
+    position: relative;
+    overflow: hidden;
+    border-color: hsl(var(--border) / 0.9);
+    background:
+      linear-gradient(180deg, hsl(var(--card) / 0.94), hsl(var(--card) / 0.9)),
+      radial-gradient(circle at top right, hsl(var(--surface-glow) / 0.16), transparent 36%);
+    box-shadow: 0 30px 90px -48px hsl(var(--foreground) / 0.45);
+  }
+
+  .login-brand {
+    border-radius: 0.9rem;
+    box-shadow: 0 18px 40px -22px hsl(var(--surface-glow) / 0.45);
+  }
+
+  .theme-portal .login-card {
+    background:
+      linear-gradient(180deg, hsl(215 24% 14% / 0.96), hsl(215 22% 11% / 0.94)),
+      linear-gradient(135deg, hsl(24 100% 56% / 0.08), transparent 32%, hsl(197 100% 58% / 0.08));
+    box-shadow:
+      0 0 0 1px hsl(197 100% 58% / 0.08),
+      0 34px 100px -54px rgba(0, 0, 0, 0.8);
+  }
+
+  .theme-wii .login-card {
+    border-radius: 2rem;
+    background:
+      linear-gradient(180deg, hsl(0 0% 100% / 0.98), hsl(198 67% 98% / 0.95)),
+      radial-gradient(circle at top right, hsl(199 89% 55% / 0.12), transparent 40%);
+    box-shadow:
+      0 36px 100px -60px hsl(199 89% 55% / 0.42),
+      inset 0 1px 0 hsl(0 0% 100%);
+  }
+
+  .theme-wii .login-brand {
+    border-radius: 0.9rem;
+  }
+
+  .theme-modern .login-card {
+    background:
+      linear-gradient(180deg, hsl(0 0% 100% / 0.96), hsl(214 40% 97% / 0.92)),
+      radial-gradient(circle at top right, hsl(214 84% 56% / 0.12), transparent 35%);
+  }
+
+  .theme-microdeb .login-card {
+    border-radius: 1.4rem;
+    background:
+      linear-gradient(180deg, hsl(0 0% 100% / 0.98), hsl(220 40% 97% / 0.94)),
+      radial-gradient(circle at top right, hsl(95 54% 58% / 0.18), transparent 35%),
+      radial-gradient(circle at bottom left, hsl(227 42% 29% / 0.1), transparent 28%);
+    box-shadow:
+      0 34px 96px -60px hsl(227 42% 29% / 0.3),
+      inset 0 1px 0 hsl(0 0% 100%);
+  }
+
+  .theme-microdeb .login-brand {
+    border-radius: 0.9rem;
+    box-shadow: 0 18px 40px -24px hsl(95 54% 58% / 0.42);
+  }
+
+  .theme-microdeb-dark .login-card {
+    border-radius: 1.4rem;
+    background:
+      linear-gradient(180deg, hsl(227 34% 24% / 0.98), hsl(228 57% 15% / 0.98)),
+      radial-gradient(circle at top right, hsl(95 61% 58% / 0.22), transparent 36%),
+      radial-gradient(circle at bottom left, hsl(227 27% 48% / 0.16), transparent 28%);
+    box-shadow:
+      0 34px 96px -56px hsl(0 0% 0% / 0.58),
+      inset 0 1px 0 hsl(0 0% 100% / 0.06);
+  }
+
+  .theme-microdeb-dark .login-brand {
+    border-radius: 0.9rem;
+    box-shadow: 0 18px 40px -22px hsl(95 61% 58% / 0.5);
+  }
+
+  .theme-warm .login-card {
+    border-radius: 2rem;
+    background:
+      linear-gradient(180deg, hsl(36 100% 98% / 0.98), hsl(35 72% 95% / 0.96)),
+      radial-gradient(circle at top right, hsl(17 78% 54% / 0.16), transparent 34%);
+    box-shadow:
+      0 36px 100px -60px hsl(17 78% 54% / 0.3),
+      inset 0 1px 0 hsl(0 0% 100%);
+  }
+
+  .theme-warm .login-brand {
+    border-radius: 0.9rem;
+  }
+
+  .theme-water .login-card {
+    border-radius: 1.7rem;
+    background:
+      linear-gradient(165deg, hsl(248 38% 14% / 0.98), hsl(250 44% 10% / 0.96)),
+      radial-gradient(circle at top left, hsl(319 100% 58% / 0.28), transparent 40%),
+      radial-gradient(circle at top right, hsl(194 100% 58% / 0.2), transparent 38%);
+    box-shadow:
+      0 40px 110px -64px hsl(319 100% 58% / 0.38),
+      inset 0 1px 0 hsl(0 0% 100% / 0.12);
+  }
+
+  .theme-water .login-brand {
+    border-radius: 0.9rem;
+    box-shadow:
+      0 18px 40px -24px hsl(319 100% 58% / 0.45),
+      0 0 0 1px hsl(194 100% 58% / 0.22);
+  }
+
+  .theme-galaxy .login-card {
+    background:
+      linear-gradient(180deg, hsl(246 31% 15% / 0.98), hsl(245 34% 11% / 0.96)),
+      radial-gradient(circle at top right, hsl(282 85% 66% / 0.16), transparent 34%),
+      radial-gradient(circle at bottom left, hsl(195 95% 61% / 0.12), transparent 28%);
+    box-shadow:
+      0 36px 110px -60px hsl(282 85% 66% / 0.3),
+      inset 0 1px 0 hsl(0 0% 100% / 0.06);
+  }
+
+  .theme-wood .login-card {
+    background:
+      linear-gradient(180deg, hsl(34 42% 97% / 0.98), hsl(33 31% 92% / 0.96)),
+      linear-gradient(8deg, hsl(28 26% 63% / 0.08) 0 2px, transparent 2px 18px);
+    box-shadow:
+      0 36px 100px -62px hsl(28 52% 37% / 0.22),
+      inset 0 1px 0 hsl(0 0% 100% / 0.45);
+  }
+
+  .theme-wood .login-brand {
+    border-radius: 1rem;
+  }
+
+  .theme-swamp .login-card {
+    background:
+      linear-gradient(180deg, hsl(102 16% 18% / 0.98), hsl(102 14% 15% / 0.96)),
+      radial-gradient(circle at top right, hsl(153 38% 39% / 0.12), transparent 34%);
+    box-shadow:
+      0 36px 100px -62px hsl(0 0% 0% / 0.34),
+      inset 0 1px 0 hsl(84 25% 88% / 0.06);
+  }
+
+  .theme-swamp .login-brand {
+    border-radius: 1rem;
+  }
+
+  .theme-autumn .login-card {
+    border-radius: 1.9rem;
+    background:
+      linear-gradient(180deg, hsl(38 100% 98% / 0.98), hsl(33 67% 94% / 0.95)),
+      radial-gradient(circle at top right, hsl(18 78% 47% / 0.16), transparent 34%);
+    box-shadow:
+      0 36px 100px -60px hsl(18 78% 47% / 0.26),
+      inset 0 1px 0 hsl(0 0% 100%);
+  }
+
+  .theme-autumn .login-brand {
+    border-radius: 0.9rem;
+  }
+
+  .theme-retro .login-card {
+    border-radius: 0.2rem;
+    background:
+      linear-gradient(180deg, hsl(120 14% 11% / 0.97), hsl(120 16% 9% / 0.97));
+    box-shadow:
+      0 0 0 1px hsl(120 28% 22%),
+      0 0 28px hsl(120 100% 65% / 0.08);
+  }
+
+  .theme-retro .login-brand {
+    border-radius: 0.2rem;
+  }
+}
